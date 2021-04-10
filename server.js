@@ -7,19 +7,23 @@ const express = require('express');
 
 
 
-// set up the server using express
+// set up the server using express 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
 const { animals } = require('./data/animals');
 
-
+//============ MIDDLEWARE START ===================
 // parse incoming string or array data
 app.use(express.urlencoded({extended: true}));
 
 //parse incoming JSON 
 app.use(express.json());
 
+// tell server to not gate certain files behind server endpoint
+app.use(express.static('public'));
+
+//================= MIDDLEWARE END ====================
 
 function filterByQuery(query, animalsArray) {
     
@@ -147,7 +151,19 @@ app.post('/api/animals', (req, res) => {
 });
 
 
-    
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+app.get('/zookeepers', (req, res )=> {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
 
 
 app.listen(PORT, () => {

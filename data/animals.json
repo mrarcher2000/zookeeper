@@ -117,6 +117,16 @@
         "hungry"
       ],
       "id": "11"
+    },
+    {
+      "name": "Serena",
+      "species": "Polar Bear",
+      "diet": "Carnivore",
+      "personalityTraits": [
+        "lazy",
+        "goofy"
+      ],
+      "id": "12"
     }
   ]
 }
